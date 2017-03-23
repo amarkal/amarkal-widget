@@ -1,0 +1,8 @@
+.amarkal-widget-field {
+    margin: 10px 0;
+}
+.amarkal-widget-field input,
+.amarkal-widget-field select,
+.amarkal-widget-field textarea {
+    width: 100%;
+}

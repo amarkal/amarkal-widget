@@ -1,0 +1,28 @@
+{
+    "name": "askupa-software/amarkal-widget",
+    "description": "Develop WordPress widgets based on Amarkal UI",
+    "type": "wordpress",
+    "keywords": ["wordpress","admin","ui","form","user interface", "widget"],
+    "homepage": "https://github.com/askupasoftware/amarkal-widget",
+    "license": "GPL-3.0",
+    "authors": [
+        {
+            "name": "Askupa Software",
+            "email": "hello@askupasoftware.com"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/askupasoftware/amarkal-widget/issues",
+        "source": "https://github.com/askupasoftware/amarkal-widget"
+    },
+    "require": {
+        "php": ">=5.3.0",
+        "askupa-software/amarkal-ui": "dev-master"
+    },
+    "autoload": {
+        "psr-4": {
+            "Amarkal\\Widget\\": ""
+        },
+        "files": ["bootstrap.php"]
+    }
+}
