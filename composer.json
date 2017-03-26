@@ -23,6 +23,6 @@
         "psr-4": {
             "Amarkal\\Widget\\": ""
         },
-        "files": ["bootstrap.php"]
+        "files": ["composer.php"]
     }
 }

@@ -1,44 +1,19 @@
 <?php
 /**
- * WordPress Widget
- *
- * Develop WordPress widgets based on Amarkal UI.
- * This is a component within the Amarkal framework.
- *
- * @package   amarkal-widget
- * @depends   amarkal-ui
- * @author    Askupa Software <hello@askupasoftware.com>
- * @link      https://github.com/askupasoftware/amarkal-widget
- * @copyright 2017 Askupa Software
+ * This file is used to manually include all required PHP files. If you are 
+ * using composer as your dependency manager, you do not need to include this 
+ * file as composer will include all neccessary files automatically.
  */
+
+// Prevent direct file access
 defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 
 /**
- * Prevent loading the library more than once
+ * Load module functions. If this amarkal module has not been loaded, 
+ * functions.php will not return false.
  */
-if( defined( 'AMARKAL_WIDGET' ) ) return;
-define( 'AMARKAL_WIDGET', true );
-
-/**
- * Load required classes if not using composer
- */
-if( !class_exists('Composer\\Autoload\\ClassLoader') )
+if(false !== require_once 'functions.php')
 {
     require_once 'AbstractWidget.php';
     require_once 'FormField.php';
 }
-
-/**
- * Print widget styles
- */
-function amarkal_widget_style() 
-{
-    $cs = get_current_screen();
-    if( 'widgets' === $cs->base )
-    {
-        echo '<style>';
-        include 'widget.css';
-        echo '</style>';
-    }
-}
-add_action('admin_footer', 'amarkal_widget_style');
