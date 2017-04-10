@@ -1,0 +1,9 @@
+<?php foreach($components as $component): ?>
+    <div class="amarkal-widget-field">
+        <label class="title" for="<?php echo $component->id ?>"><?php echo $component->title ?></label>
+        <?php echo $component->render(); ?>
+        <?php if($component->description): ?>
+            <p class="description"><?php echo $component->description ?></p>
+        <?php endif ?>
+    </div>
+<?php endforeach; ?>

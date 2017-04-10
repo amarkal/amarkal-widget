@@ -60,7 +60,7 @@ Name | Type | Default | Required | Description
 `name`|*string*|`''`|Yes|Specifies the widget's name.
 `widget_options`|*array*|`array()`|No|Specifies a list of widget options, like a description.
 `control_options`|*array*|`array()`|No|Specifies a list of widget control options.
-`fields`|*array*|`array()`|No|Specifies a list of `amarkal-ui` components to be used for the widget's admin form. Each item in this array should be an array and have the original UI component arguments as specified in `amarkal-ui`, as well as the following: `default`, `label`, `description`.
+`fields`|*array*|`array()`|No|Specifies a list of `amarkal-ui` components to be used for the widget's admin form. Each item in this array should be an array and have the original UI component arguments as specified in `amarkal-ui`, as well as the following: `default`, `title`, `description`.
 
 ### Example Code
 
@@ -81,7 +81,7 @@ extends \Amarkal\Widget\AbstractWidget
             'widget_options'  => array(
                 'description' => 'Just a very very cool widget...'  // The widget's description
             ),
-            'control_options' => array()            // Optional
+            'control_options' => array(),           // Optional
             
             /**
              * The 'fields' argument specifies a list of amarkal-ui components to be used for the widget's admin form.
@@ -89,14 +89,14 @@ extends \Amarkal\Widget\AbstractWidget
             'fields'          => array(
                 array(
                     'name'          => 'title',
-                    'label'         => __( 'Title:', 'slug' ),
+                    'title'         => __( 'Title:', 'slug' ),
                     'default'       => 'My Cool Widget',
                     'description'   => 'Specifies the widget\'s title',
                     'type'          => 'text'
                 ),
                 array(
                     'name'          => 'content',
-                    'label'         => __( 'Text:', 'slug' ),
+                    'title'         => __( 'Text:', 'slug' ),
                     'default'       => 'My cool widget content',
                     'description'   => 'Specifies the widget\'s content',
                     'type'          => 'text'
@@ -106,8 +106,8 @@ extends \Amarkal\Widget\AbstractWidget
     }
     
     /**
-	   * The front-end display of widget. User data is accesible through the $instance variable.
-	   */
+     * The front-end display of widget. User data is accesible through the $instance variable.
+     */
     public function widget( $args, $instance ) 
     {
         $title = apply_filters( 'widget_title', empty( $instance['title'] ) ? '' : $instance['title'], $instance, $this->id_base );        

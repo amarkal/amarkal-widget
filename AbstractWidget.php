@@ -6,6 +6,8 @@ abstract class AbstractWidget extends \WP_Widget
 {   
     private $config;
     
+    private $ui_form;
+    
     public function __construct() 
     {
         $config = $this->get_config();
@@ -20,43 +22,41 @@ abstract class AbstractWidget extends \WP_Widget
     
     public function form( $instance ) 
     {
-        $values = array_merge($this->get_default_field_values(),$instance);
-        $config = $this->get_config();
-
-        foreach( $config['fields'] as $field_args )
+        $form       = $this->get_form();
+        $components = $form->get_components();
+        
+        $form->update($instance);
+        
+        foreach( $components as $component )
         {
-            $field_args['value'] = $values[$field_args['name']];
-            $field_args['id'] = $this->get_field_id($field_args['name']);
-            $field_args['name'] = $this->get_field_name($field_args['name']);
-            
-            $field = new FormField($field_args);
-            echo $field->render();
+            $component->original_name = $component->name;
+            $component->id = $this->get_field_id($component->name);
+            $component->name = $this->get_field_name($component->name);
+        }
+        
+        include __DIR__.'/Form.phtml';
+        
+        foreach( $components as $component )
+        {
+            $component->id = $component->original_name;
+            $component->name = $component->original_name;
         }
     }
 
     public function update( $new_instance, $old_instance ) 
     {
-        $instance = array_merge($this->get_default_field_values(), $new_instance);
-        $config   = $this->get_config();
-        
-        foreach( $config['fields'] as $field )
-        {
-            $name     = $field['name'];
-            $value    = $new_instance[$name];
-            $instance[$name] = $value;
-        }
-        return $instance;
+        $form = $this->get_form();
+        return $form->update($new_instance, $old_instance);
     }
     
-    private function get_default_field_values()
+    private function get_form()
     {
-        $defaults = array();
-        $config = $this->get_config();
-        foreach( $config['fields'] as $field )
+        if( !isset($this->ui_form) )
         {
-            $defaults[$field['name']] = $field['default'];
+            $config = $this->get_config();
+            $this->ui_form = new \Amarkal\UI\Form($config['fields']);
         }
-        return $defaults;
+        return $this->ui_form;
     }
     
     private function default_config()

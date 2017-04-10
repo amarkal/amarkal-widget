@@ -1,7 +1,17 @@
 .amarkal-widget-field {
     margin: 10px 0;
 }
-.amarkal-widget-field input,
+.amarkal-widget-field .description {
+    padding: 0;
+    margin-top: 5px;
+    font-style: italic;
+}
+.amarkal-widget-field .title {
+    margin-bottom: 5px;
+    display: block;
+    font-weight: bold;
+}
+.amarkal-widget-field input[type="text"],
 .amarkal-widget-field select,
 .amarkal-widget-field textarea {
     width: 100%;
