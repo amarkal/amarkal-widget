@@ -4,10 +4,19 @@ namespace Amarkal\Widget;
 
 abstract class AbstractWidget extends \WP_Widget
 {   
+    /**
+     * @var array The configuration array
+     */
     private $config;
     
+    /**
+     * @var \Amarkal\UI\Form Amarkal UI for data processing 
+     */
     private $ui_form;
     
+    /**
+     * Get the user config and call the parent constructor
+     */
     public function __construct() 
     {
         $config = $this->get_config();
@@ -20,6 +29,11 @@ abstract class AbstractWidget extends \WP_Widget
         );
     }
     
+    /**
+     * Generates the administration form for the widget
+     * 
+     * @param array $instance The array of keys and values for the widget
+     */
     public function form( $instance ) 
     {
         $form       = $this->get_form();
@@ -27,6 +41,7 @@ abstract class AbstractWidget extends \WP_Widget
         
         $form->update($instance);
         
+        // Set the widget-specific names and ids
         foreach( $components as $component )
         {
             $component->original_name = $component->name;
@@ -36,6 +51,7 @@ abstract class AbstractWidget extends \WP_Widget
         
         include __DIR__.'/Form.phtml';
         
+        // Use the original names again (for when the components update)
         foreach( $components as $component )
         {
             $component->id = $component->original_name;
@@ -43,12 +59,23 @@ abstract class AbstractWidget extends \WP_Widget
         }
     }
 
+    /**
+     * Process the widget's options before they are saved into the db
+     *
+     * @param array $new_instance The previous instance of values before the update.
+     * @param array $old_instance The new instance of values to be generated via the update.
+     */
     public function update( $new_instance, $old_instance ) 
     {
         $form = $this->get_form();
         return $form->update($new_instance, $old_instance);
     }
     
+    /**
+     * Get the Amarkal UI form.
+     * 
+     * @return \Amarkal\UI\Form
+     */
     private function get_form()
     {
         if( !isset($this->ui_form) )
@@ -59,6 +86,11 @@ abstract class AbstractWidget extends \WP_Widget
         return $this->ui_form;
     }
     
+    /**
+     * Get the default widget configuration.
+     * 
+     * @return array
+     */
     private function default_config()
     {
         return array(
@@ -70,6 +102,13 @@ abstract class AbstractWidget extends \WP_Widget
         );
     }
     
+    /**
+     * Get the configuraiton array, merging between the user and the default 
+     * configuration values.
+     * 
+     * @return array
+     * @throws \RuntimeException if the configuration is missing the ID argument
+     */
     private function get_config()
     {
         if( !isset($this->config) )
@@ -87,5 +126,8 @@ abstract class AbstractWidget extends \WP_Widget
         return $this->config;
     }
     
+    /**
+     * The user configuration array. Must be implemented in the child class.
+     */
     abstract public function config();
 }
