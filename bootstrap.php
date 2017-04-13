@@ -15,5 +15,4 @@ defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 if(false !== (require_once 'functions.php'))
 {
     require_once 'AbstractWidget.php';
-    require_once 'FormField.php';
 }
