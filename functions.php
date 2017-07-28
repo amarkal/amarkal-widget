@@ -21,20 +21,18 @@ defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 if( defined( 'AMARKAL_WIDGET' ) ) return false;
 define( 'AMARKAL_WIDGET', true );
 
-if(!function_exists('amarkal_widget_style'))
+if(!function_exists('amarkal_widget_assets'))
 {
     /**
      * Print widget styles
      */
-    function amarkal_widget_style() 
+    function amarkal_widget_scripts( $hook ) 
     {
-        $cs = get_current_screen();
-        if( 'widgets' === $cs->base )
+        if( 'widgets.php' === $hook )
         {
-            echo '<style>';
-            include 'widget.css';
-            echo '</style>';
+            \wp_enqueue_style('amarkal-widget',\Amarkal\Core\Utility::path_to_url(__DIR__.'/widget.css'));
+            \wp_enqueue_script('amarkal-widget',\Amarkal\Core\Utility::path_to_url(__DIR__.'/widget.js'),array('jquery','amarkal-ui'));
         }
     }
-    add_action('admin_footer', 'amarkal_widget_style');
+    add_action('admin_enqueue_scripts', 'amarkal_widget_scripts');
 }
