@@ -12,7 +12,7 @@ abstract class AbstractWidget extends \WP_Widget
     /**
      * @var \Amarkal\UI\Form Amarkal UI for data processing 
      */
-    private $ui_form;
+    private $form;
     
     /**
      * Get the user config and call the parent constructor
@@ -36,13 +36,13 @@ abstract class AbstractWidget extends \WP_Widget
      */
     public function form( $instance ) 
     {
-        $form       = $this->get_form();
-        $components = $form->get_components();
+        $form = $this->get_form();
+        $cl   = $form->get_component_list();
         
         $form->update($instance);
         
         // Set the widget-specific names and ids
-        foreach( $components as $component )
+        foreach( $cl->get_value_components() as $component )
         {
             $component->original_name = $component->name;
             $component->id = $this->get_field_id($component->name);
@@ -52,7 +52,7 @@ abstract class AbstractWidget extends \WP_Widget
         include __DIR__.'/Form.phtml';
         
         // Use the original names again (for when the components update)
-        foreach( $components as $component )
+        foreach( $cl->get_value_components() as $component )
         {
             $component->id = $component->original_name;
             $component->name = $component->original_name;
@@ -78,12 +78,14 @@ abstract class AbstractWidget extends \WP_Widget
      */
     private function get_form()
     {
-        if( !isset($this->ui_form) )
+        if( !isset($this->form) )
         {
             $config = $this->get_config();
-            $this->ui_form = new \Amarkal\UI\Form($config['fields']);
+            $this->form = new \Amarkal\UI\Form(
+                new \Amarkal\UI\ComponentList($config['fields'])
+            );
         }
-        return $this->ui_form;
+        return $this->form;
     }
     
     /**

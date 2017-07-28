@@ -1,4 +1,4 @@
-<?php foreach($components as $component): ?>
+<?php foreach($cl->get_all() as $component): ?>
     <div class="amarkal-widget-field">
         <label class="title" for="<?php echo $component->id ?>"><?php echo $component->title ?></label>
         <?php echo $component->render(); ?>
