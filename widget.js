@@ -15,5 +15,8 @@ jQuery(document).on('widget-updated', function(e, $widget){
 
 // Reinitiate the components when the user drags a new widget to one of the sidebars
 jQuery(document).on('widget-added', function(e, $widget){
-    $widget.find('.amarkal-ui-component').amarkalUIComponent();
+    // Wait a bit for the widget form to expand after being added
+    setTimeout(function(){
+        $widget.find('.amarkal-ui-component').amarkalUIComponent();
+    },100);
 });
