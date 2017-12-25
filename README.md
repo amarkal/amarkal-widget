@@ -1,13 +1,13 @@
-# amarkal-widget [![Build Status](https://scrutinizer-ci.com/g/askupasoftware/amarkal-widget/badges/build.png?b=master)](https://scrutinizer-ci.com/g/askupasoftware/amarkal-widget/build-status/master) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/askupasoftware/amarkal-widget/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/askupasoftware/amarkal-widget/?branch=master) [![License](https://img.shields.io/badge/license-GPL--3.0%2B-red.svg)](https://raw.githubusercontent.com/askupasoftware/amarkal-widget/master/LICENSE)
+# amarkal-widget [![Build Status](https://scrutinizer-ci.com/g/amarkal/amarkal-widget/badges/build.png?b=master)](https://scrutinizer-ci.com/g/amarkal/amarkal-widget/build-status/master) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/amarkal/amarkal-widget/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/amarkal/amarkal-widget/?branch=master) [![License](https://img.shields.io/badge/license-GPL--3.0%2B-red.svg)](https://raw.githubusercontent.com/amarkal/amarkal-widget/master/LICENSE)
 Develop WordPress widgets based on Amarkal UI.
 
 **Tested up to:** WordPress 4.7  
-**Dependencies**: *[amarkal-ui](https://github.com/askupasoftware/amarkal-ui)*
+**Dependencies**: *[amarkal-ui](https://github.com/amarkal/amarkal-ui)*
 
 ![amarkal-widget](https://askupasoftware.com/wp-content/uploads/2015/04/amarkal-widget.png)
 
 ## Overview
-**amarkal-widget** lets you develop widgets for your WordPress theme or plugin, using [amarkal-ui](https://github.com/askupasoftware/amarkal-ui). **amarkal-widget** takes care of building the admin user form and saving the user input, so you can concentrate on building the widget itself!
+**amarkal-widget** lets you develop widgets for your WordPress theme or plugin, using [amarkal-ui](https://github.com/amarkal/amarkal-ui). **amarkal-widget** takes care of building the admin user form and saving the user input, so you can concentrate on building the widget itself!
 
 ## Installation
 
@@ -38,7 +38,7 @@ require_once 'path/to/vendor/autoload.php';
 
 ### Manually
 
-Download [amarkal-ui](https://github.com/askupasoftware/amarkal-ui/archive/master.zip) and [amarkal-widget](https://github.com/askupasoftware/amarkal-widget/archive/master.zip) from github and include them in your project.
+Download [amarkal-ui](https://github.com/amarkal/amarkal-ui/archive/master.zip) and [amarkal-widget](https://github.com/amarkal/amarkal-widget/archive/master.zip) from github and include them in your project.
 
 ```php
 require_once 'path/to/amarkal-ui/bootstrap.php';

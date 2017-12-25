@@ -8,7 +8,7 @@
  * @package   amarkal-widget
  * @depends   amarkal-ui
  * @author    Askupa Software <hello@askupasoftware.com>
- * @link      https://github.com/askupasoftware/amarkal-widget
+ * @link      https://github.com/amarkal/amarkal-widget
  * @copyright 2017 Askupa Software
  */
 
